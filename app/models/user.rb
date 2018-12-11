@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  attr_accessor :current_password
+
   validates :first_name, :last_name, :date_of_birth, presence: true
   validates :date_of_birth, timeliness: {before: lambda { Date.current }, type: :date}
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/missing_avatar.jpg"
